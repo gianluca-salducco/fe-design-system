@@ -1,7 +1,9 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import { Tabs } from "./Tabs";
+import { describe, test, expect, vi } from "vitest";
 
-jest.mock("../Tab/Tab", () => ({
+// Mock del componente Tab
+vi.mock("../Tab/Tab", () => ({
   Tab: ({ tab, selected, onTabClick }: any) => (
     <div
       role="tab"
@@ -14,6 +16,15 @@ jest.mock("../Tab/Tab", () => ({
   ),
 }));
 
+// Mock del CSS Module di Tabs
+vi.mock("./Tabs.module.css", () => ({
+  default: {
+    tabs: "tabs",
+    pill: "pill",
+    underline: "underline",
+  },
+}));
+
 describe("Tabs component", () => {
   const tabs = [
     { id: "t1", label: "Tab 1" },
@@ -21,7 +32,7 @@ describe("Tabs component", () => {
   ];
 
   test("renders all tabs", () => {
-    render(<Tabs tabs={tabs} selectedTabId="t1" onChange={jest.fn()} />);
+    render(<Tabs tabs={tabs} selectedTabId="t1" onChange={vi.fn()} />);
 
     expect(screen.getByText("Tab 1")).toBeInTheDocument();
     expect(screen.getByText("Tab 2")).toBeInTheDocument();
@@ -32,7 +43,7 @@ describe("Tabs component", () => {
       <Tabs
         tabs={tabs}
         selectedTabId="t1"
-        onChange={jest.fn()}
+        onChange={vi.fn()}
         aria-label="My Tabs"
       />
     );
@@ -42,7 +53,7 @@ describe("Tabs component", () => {
   });
 
   test("marks the selected tab correctly", () => {
-    render(<Tabs tabs={tabs} selectedTabId="t2" onChange={jest.fn()} />);
+    render(<Tabs tabs={tabs} selectedTabId="t2" onChange={vi.fn()} />);
 
     expect(screen.getByTestId("tab-t1")).toHaveAttribute(
       "aria-selected",
@@ -55,7 +66,7 @@ describe("Tabs component", () => {
   });
 
   test("calls onChange when clicking a tab", () => {
-    const onChange = jest.fn();
+    const onChange = vi.fn();
 
     render(<Tabs tabs={tabs} selectedTabId="t1" onChange={onChange} />);
 
@@ -64,19 +75,8 @@ describe("Tabs component", () => {
   });
 
   test("applies variant classes", () => {
-    jest.mock("./Tabs.module.css", () => ({
-      tabs: "tabs",
-      pill: "pill",
-      underline: "underline",
-    }));
-
     const { rerender, container } = render(
-      <Tabs
-        tabs={tabs}
-        selectedTabId="t1"
-        onChange={jest.fn()}
-        variant="pill"
-      />
+      <Tabs tabs={tabs} selectedTabId="t1" onChange={vi.fn()} variant="pill" />
     );
 
     expect((container.firstChild as HTMLElement)?.className).toMatch(/pill/);
@@ -85,7 +85,7 @@ describe("Tabs component", () => {
       <Tabs
         tabs={tabs}
         selectedTabId="t1"
-        onChange={jest.fn()}
+        onChange={vi.fn()}
         variant="underline"
       />
     );
@@ -100,7 +100,7 @@ describe("Tabs component", () => {
       <Tabs
         tabs={tabs}
         selectedTabId="t1"
-        onChange={jest.fn()}
+        onChange={vi.fn()}
         className="custom-class"
       />
     );

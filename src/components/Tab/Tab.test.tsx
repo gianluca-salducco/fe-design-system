@@ -1,8 +1,10 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import { Tab } from "./Tab";
-import { BadgeProps } from "../Badge/Badge";
+import type { BadgeProps } from "../Badge/Badge";
+import { vi, describe, test, expect } from "vitest";
 
-jest.mock("../Badge/Badge", () => ({
+// Mock del Badge
+vi.mock("../Badge/Badge", () => ({
   Badge: ({ label }: { label: string }) => (
     <span data-testid="badge">{label}</span>
   ),
@@ -16,19 +18,14 @@ describe("Tab component", () => {
 
   test("renders tab label", () => {
     render(
-      <Tab
-        tab={baseTab}
-        variant="pill"
-        selected={false}
-        onTabClick={jest.fn()}
-      />
+      <Tab tab={baseTab} variant="pill" selected={false} onTabClick={vi.fn()} />
     );
 
     expect(screen.getByText("Tab 1")).toBeInTheDocument();
   });
 
   test("calls onTabClick when clicked", () => {
-    const onTabClick = jest.fn();
+    const onTabClick = vi.fn();
 
     render(
       <Tab
@@ -44,7 +41,7 @@ describe("Tab component", () => {
   });
 
   test("calls onTabClick when pressing Enter", () => {
-    const onTabClick = jest.fn();
+    const onTabClick = vi.fn();
 
     render(
       <Tab
@@ -60,7 +57,7 @@ describe("Tab component", () => {
   });
 
   test("calls onTabClick when pressing Space", () => {
-    const onTabClick = jest.fn();
+    const onTabClick = vi.fn();
 
     render(
       <Tab
@@ -86,7 +83,7 @@ describe("Tab component", () => {
         tab={tabWithBadge}
         variant="pill"
         selected={false}
-        onTabClick={jest.fn()}
+        onTabClick={vi.fn()}
       />
     );
 
@@ -95,12 +92,7 @@ describe("Tab component", () => {
 
   test("sets aria-selected correctly", () => {
     const { container } = render(
-      <Tab
-        tab={baseTab}
-        variant="pill"
-        selected={true}
-        onTabClick={jest.fn()}
-      />
+      <Tab tab={baseTab} variant="pill" selected={true} onTabClick={vi.fn()} />
     );
 
     expect(container.firstChild).toHaveAttribute("aria-selected", "true");
@@ -108,12 +100,7 @@ describe("Tab component", () => {
 
   test("applies variant classes", () => {
     const { rerender, container } = render(
-      <Tab
-        tab={baseTab}
-        variant="pill"
-        selected={false}
-        onTabClick={jest.fn()}
-      />
+      <Tab tab={baseTab} variant="pill" selected={false} onTabClick={vi.fn()} />
     );
 
     expect((container.firstChild as HTMLElement).className).toMatch(/pill/);
@@ -123,7 +110,7 @@ describe("Tab component", () => {
         tab={baseTab}
         variant="underline"
         selected={false}
-        onTabClick={jest.fn()}
+        onTabClick={vi.fn()}
       />
     );
 
