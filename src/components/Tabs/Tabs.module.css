@@ -1,0 +1,9 @@
+.tabs {
+    display: inline-flex;
+    gap: var(--spacing-2xs);
+    align-items: center;
+}
+
+.tabs.underline {
+    gap: var(--spacing-l);
+}

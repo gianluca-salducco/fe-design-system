@@ -1,0 +1,95 @@
+.tab {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-2xs);
+    height: 50px;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+}
+
+.withBadge {
+    gap: var(--spacing-2xs);
+}
+
+.label {
+    font: inherit;
+}
+
+.pill {
+    border-radius: 100px;
+    padding: 0 var(--spacing-m);
+}
+
+.pill:not(.selected) {
+    background-color: var(--Neutral-white);
+    color: var(--Primary-100);
+    border: 1px solid var(--Neutral-Grey-100);
+}
+
+.pill.selected {
+    background-color: var(--Primary-100);
+    color: var(--Neutral-white);
+}
+
+.pill.selected:hover {
+    background-color: var(--Primary-200);
+    color: var(--Neutral-white);
+}
+
+.pill:not(.selected):hover {
+    background-color: var(--Neutral-Grey-200);
+    color: var(--Primary-100);
+    border: 1px solid var(--Neutral-Grey-400);
+}
+
+.pill:focus-visible {
+    outline: 2px solid var(--Primary-200);
+    outline-offset: 2px;
+}
+
+.underline {
+    position: relative;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 1px; 
+}
+
+.underline.selected::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--Neutral-black);
+    border-radius: 5px;
+}
+
+.underline:not(.selected):hover::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--Neutral-Grey-400);
+    border-radius: 5px;
+}
+
+.underline:not(.selected):focus-visible::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--Neutral-Grey-400);
+    border-radius: 5px;
+}
+
+.underline:focus-visible {
+    outline: 2px solid var(--Primary-200);
+    outline-offset: 2px;
+}

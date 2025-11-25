@@ -1,0 +1,20 @@
+.badge {
+    padding: var(--spacing-3xs) var(--spacing-2xs);
+    border-radius: 12px;
+    display: inline-flex;
+}
+
+.neutral {
+    background-color: var(--Neutral-Grey-50);
+    color: var(--Neutral-black);
+}
+
+.positive {
+    background-color: var(--Success-100);
+    color: var(--Neutral-black);
+}
+
+.negative {
+    background-color: var(--Danger-100);
+    color: var(--Neutral-black);
+}
