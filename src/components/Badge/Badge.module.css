@@ -18,3 +18,9 @@
     background-color: var(--Danger-100);
     color: var(--Neutral-black);
 }
+
+@media (max-width: 768px) {
+    .badge {
+        padding: var(--spacing-4xs) var(--spacing-3xs);
+    }  
+}

@@ -1,9 +1,19 @@
 .tabs {
     display: inline-flex;
-    gap: var(--spacing-2xs);
+    gap: var(--spacing-xs);
     align-items: center;
 }
 
 .tabs.underline {
-    gap: var(--spacing-l);
+    gap: var(--spacing-xl);
+}
+
+@media (max-width: 768px) {
+    .tabs {
+        gap: var(--spacing-2xs);
+    }
+
+    .tabs.underline {
+        gap: var(--spacing-l);
+    }
 }

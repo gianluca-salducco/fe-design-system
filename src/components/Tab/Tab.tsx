@@ -23,11 +23,12 @@ export const Tab: React.FC<TabProps> = ({
   selected = false,
   onTabClick,
 }: TabProps) => {
+  const isMobile = window.innerWidth <= 768;
   return (
     <div
       role="tab"
       aria-selected={selected}
-      className={classNames(styles.tab, "body-m", {
+      className={classNames(styles.tab, isMobile ? "body-s" : "body-m", {
         [styles.selected]: selected,
         [styles.pill]: variant === "pill",
         [styles.underline]: variant === "underline",
